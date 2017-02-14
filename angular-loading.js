@@ -48,7 +48,9 @@
                         
                     }
                 ], 
-                controllerAs: "loadingCtrl"
+                controllerAs: "loadingCtrl", 
+                template: '<div class="loading" ng-show="loadingCtrl.loadingService.isLoading"></div>', 
+                replace: true
             };
         }
     ]);
