@@ -4,7 +4,11 @@
         <link type="text/css" rel="StyleSheet" href="bower_components/font-awesome/css/font-awesome.css"/>
     </head>
     <body ng-controller="BodyController as bodyCtrl">
+        <loading></loading>
         <h1>Angular-Loading Demo</h1>
+        <p>
+            Is loading: {{bodyCtrl.isLoading}}
+        </p>
 
         <script type="text/javascript" src="bower_components/angular/angular.js"></script>
         <script type="text/javascript" src="angular-loading.js"></script>
@@ -17,20 +21,18 @@
                 app.config(['LoadingServiceProvider',
                     function (loadingServiceProvider) {
 
-                        headServiceProvider.setTitle("Angular-Head Demo");
-
                     }
                 ]);
 
-                app.controller("BodyController", ["$interval", "loadingService",
+                app.controller("BodyController", ["$interval", "LoadingService",
                     function ($interval, loadingService) {
 
                         var that = this;
-                        that.title = titles[0];
+                        that.isLoading = false;
 
                         $interval(function () {
-                            headService.setTitle(that.title);
-                            that.title = titles[Math.floor(Math.random() * titles.length)];
+                            that.isLoading = !that.isLoading;
+                            loadingService.setLoading(that.isLoading);
                         }, 1000);
 
 
