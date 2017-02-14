@@ -14,17 +14,23 @@
             var that = this;
            
             that.icon = "fa-spinner";
+            that.overlayOpacity = 0.2;
 
             that.setIcon = function (icon) {
                 that.icon = icon;
             };
+            
+            that.setOverlayOpacity = function(opacity) {
+                that.overlayOpacity = opacity;
+            };
 
-            that.$get = ["$log", "$rootScope",
-                function ($log, $rootScope) {
+            that.$get = ["$log",
+                function ($log) {
                     $log.debug("LoadingService: starting");
 
                     var me = {
                         icon: that.icon, 
+                        overlayOpacity: that.overlayOpacity, 
                         isLoading: false,
                         setLoading: function(loading) {
                             me.isLoading = loading;
@@ -52,7 +58,7 @@
                     }
                 ], 
                 controllerAs: "loadingCtrl", 
-                template: '<div class="loading" ng-show="loadingCtrl.loadingService.isLoading" style="margin: 0; background: rgba(0, 0, 0, 0.5); position: fixed; top: 0px; left: 0px; z-index: 99; width: 100%; height: 100%; display: flex;"><div style="display: flex; border-radius: 10px; background: rgba(0, 0, 0, 0.8); color: white; padding: 2em 3em 2em 3em; margin: auto"><span class="fa {{loadingCtrl.loadingService.icon}} fa-spin fa-3x fa-fw"></span></div></div>', 
+                template: '<div class="loading" ng-show="loadingCtrl.loadingService.isLoading" style="margin: 0; background: rgba(0, 0, 0, {{::loadingCtrl.loadingService.overlayOpacity}}); position: fixed; top: 0px; left: 0px; z-index: 99; width: 100%; height: 100%; display: flex;"><div style="display: flex; border-radius: 10px; background: rgba(0, 0, 0, 0.8); color: white; padding: 2em 3em 2em 3em; margin: auto"><span class="fa {{::loadingCtrl.loadingService.icon}} fa-spin fa-3x fa-fw"></span></div></div>', 
                 replace: true
             };
         }

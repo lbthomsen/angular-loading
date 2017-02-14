@@ -7,7 +7,10 @@
         <loading></loading>
         <h1>Angular-Loading Demo</h1>
         <p>
-            Is loading: {{bodyCtrl.isLoading}}
+            Click this button to display loading for <input type="number" ng-model="bodyCtrl.timer"/> second: <button ng-click="bodyCtrl.showLoading()">Test</button>
+        </p>
+        <p>
+            Is loading: {{bodyCtrl.loadingService.isLoading}}
         </p>
 
         <script type="text/javascript" src="bower_components/angular/angular.js"></script>
@@ -21,24 +24,27 @@
                 app.config(['LoadingServiceProvider',
                     function (loadingServiceProvider) {
 
+                        loadingServiceProvider.setOverlayOpacity(0.8);
                         loadingServiceProvider.setIcon("fa-spinner");
                         //loadingServiceProvider.setIcon("fa-circle-o-notch");
 
                     }
                 ]);
 
-                app.controller("BodyController", ["$interval", "LoadingService",
-                    function ($interval, loadingService) {
+                app.controller("BodyController", ["$timeout", "LoadingService",
+                    function ($timeout, loadingService) {
 
                         var that = this;
-                        that.isLoading = false;
-
-                        $interval(function () {
-                            that.isLoading = !that.isLoading;
-                            loadingService.setLoading(that.isLoading);
-                        }, 1000);
-
-
+                        that.loadingService = loadingService;
+                        that.timer = 1;
+                        
+                        that.showLoading = function() {
+                            loadingService.setLoading(true);
+                            $timeout(function() {
+                                loadingService.setLoading(false);
+                            }, that.timer * 1000);
+                        };
+                        
                     }
                 ]);
 
