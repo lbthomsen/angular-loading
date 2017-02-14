@@ -13,10 +13,10 @@
 
             var that = this;
            
-            that.title = "Unconfigured HeadService";
+            that.icon = "fa-spinner";
 
-            that.setTitle = function (title) {
-                that.title = title;
+            that.setIcon = function (icon) {
+                that.icon = icon;
             };
 
             that.$get = ["$log", "$rootScope",
@@ -24,6 +24,7 @@
                     $log.debug("LoadingService: starting");
 
                     var me = {
+                        icon: that.icon, 
                         isLoading: false,
                         setLoading: function(loading) {
                             me.isLoading = loading;
@@ -51,7 +52,7 @@
                     }
                 ], 
                 controllerAs: "loadingCtrl", 
-                template: '<div class="loading" ng-show="loadingCtrl.loadingService.isLoading"><span class="fa fa-spinner fa-spin fa-3x fa-fw"></span></div>', 
+                template: '<div class="loading" ng-show="loadingCtrl.loadingService.isLoading" style="position: absolute; z-index: 10; width: 100%; height: 100%; opacity: 0.5;"><span class="fa {{loadingCtrl.loadingService.icon}} fa-spin fa-3x fa-fw"></span></div>', 
                 replace: true
             };
         }
