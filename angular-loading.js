@@ -45,11 +45,13 @@
                 controller: ["$log", "LoadingService", 
                     function($log, loadingService) {
                         $log.debug("LoadingController: starting");
+                        var that = this;
+                        that.loadingService = loadingService;
                         
                     }
                 ], 
                 controllerAs: "loadingCtrl", 
-                template: '<div class="loading" ng-show="loadingCtrl.loadingService.isLoading"></div>', 
+                template: '<div class="loading" ng-show="loadingCtrl.loadingService.isLoading"><span class="fa fa-spinner fa-spin fa-3x fa-fw"></span></div>', 
                 replace: true
             };
         }
