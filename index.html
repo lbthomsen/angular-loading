@@ -1,0 +1,45 @@
+<html ng-app="app">
+    <head>
+        <title>Angular-Loading Demo</title>
+        <link type="text/css" rel="StyleSheet" href="bower_components/font-awesome/css/font-awesome.css"/>
+    </head>
+    <body ng-controller="BodyController as bodyCtrl">
+        <h1>Angular-Loading Demo</h1>
+
+        <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+        <script type="text/javascript" src="angular-loading.js"></script>
+        <script type="text/javascript">
+
+                var app = angular.module("app", [
+                    'angular-loading'
+                ]);
+
+                app.config(['LoadingServiceProvider',
+                    function (loadingServiceProvider) {
+
+                        headServiceProvider.setTitle("Angular-Head Demo");
+
+                    }
+                ]);
+
+                app.controller("BodyController", ["$interval", "loadingService",
+                    function ($interval, loadingService) {
+
+                        var that = this;
+                        that.title = titles[0];
+
+                        $interval(function () {
+                            headService.setTitle(that.title);
+                            that.title = titles[Math.floor(Math.random() * titles.length)];
+                        }, 1000);
+
+
+                    }
+                ]);
+
+        </script>
+    </body>
+</html>
+<!--+
+    | vim: ts=4 et nowrap autoindent
+    +-->
