@@ -1,55 +1,60 @@
 <html ng-app="app">
     <head>
         <title>Angular-Loading Demo</title>
-        <link type="text/css" rel="StyleSheet" href="bower_components/font-awesome/css/font-awesome.css"/>
+        <link type="text/css" rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css"/>
+        <style>
+            [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+                display: none !important;
+            }
+        </style>
     </head>
-    <body ng-controller="BodyController as bodyCtrl">
-        <loading></loading>
-        <h1>Angular-Loading Demo</h1>
-        <p>
-            Click this button to display loading for <input type="number" ng-model="bodyCtrl.timer"/> second: <button ng-click="bodyCtrl.showLoading()">Test</button>
-        </p>
-        <p>
-            Is loading: {{bodyCtrl.loadingService.isLoading}}
-        </p>
+    <body ng-cloak ng-controller="BodyController as bodyCtrl">
+    <loading></loading>
+    <h1>Angular-Loading Demo</h1>
+    <p>
+        Click this button to display loading for <input type="number" ng-model="bodyCtrl.timer"/> second: <button ng-click="bodyCtrl.showLoading()">Test</button>
+    </p>
+    <p>
+        Is loading: {{bodyCtrl.loadingService.isLoading}}
+    </p>
 
-        <script type="text/javascript" src="bower_components/angular/angular.js"></script>
-        <script type="text/javascript" src="angular-loading.js"></script>
-        <script type="text/javascript">
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="angular-loading.js"></script>
+    <script type="text/javascript">
 
-                var app = angular.module("app", [
-                    'angular-loading'
-                ]);
+                    var app = angular.module("app", [
+                        'angular-loading'
+                    ]);
 
-                app.config(['LoadingServiceProvider',
-                    function (loadingServiceProvider) {
+                    app.config(['LoadingServiceProvider',
+                        function (loadingServiceProvider) {
 
-                        loadingServiceProvider.setOverlayOpacity(0.8);
-                        loadingServiceProvider.setIcon("fa-spinner");
-                        //loadingServiceProvider.setIcon("fa-circle-o-notch");
+                            loadingServiceProvider.setOverlayOpacity(0.8);
+                            loadingServiceProvider.setIcon("fa-spinner");
+                            //loadingServiceProvider.setIcon("fa-circle-o-notch");
 
-                    }
-                ]);
+                        }
+                    ]);
 
-                app.controller("BodyController", ["$timeout", "LoadingService",
-                    function ($timeout, loadingService) {
+                    app.controller("BodyController", ["$timeout", "LoadingService",
+                        function ($timeout, loadingService) {
 
-                        var that = this;
-                        that.loadingService = loadingService;
-                        that.timer = 1;
-                        
-                        that.showLoading = function() {
-                            loadingService.setLoading(true);
-                            $timeout(function() {
-                                loadingService.setLoading(false);
-                            }, that.timer * 1000);
-                        };
-                        
-                    }
-                ]);
+                            var that = this;
+                            that.loadingService = loadingService;
+                            that.timer = 1;
 
-        </script>
-    </body>
+                            that.showLoading = function () {
+                                loadingService.setLoading(true);
+                                $timeout(function () {
+                                    loadingService.setLoading(false);
+                                }, that.timer * 1000);
+                            };
+
+                        }
+                    ]);
+
+    </script>
+</body>
 </html>
 <!--+
     | vim: ts=4 et nowrap autoindent
