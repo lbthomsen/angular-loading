@@ -4,7 +4,7 @@
   "description": "Create an angular service which can show various forms of \"loading\" animations.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "lite-server"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,12 @@
   "bugs": {
     "url": "https://github.com/lbthomsen/angular-loading/issues"
   },
-  "homepage": "https://github.com/lbthomsen/angular-loading#readme"
+  "homepage": "https://github.com/lbthomsen/angular-loading#readme",
+  "devDependencies": {
+    "lite-server": "^2.2.2"
+  },
+  "dependencies": {
+    "angular": "^1.6.2",
+    "font-awesome": "^4.7.0"
+  }
 }
