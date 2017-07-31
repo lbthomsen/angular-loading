@@ -2,6 +2,7 @@
   "name": "angular-loading",
   "description": "Create an angular service which can show various forms of \"loading\" animations.",
   "main": "angular-loading.js",
+  "version": "0.8.6",
   "authors": [
     "Lars Boegild Thomsen <lbthomsen@gmail.com>"
   ],
