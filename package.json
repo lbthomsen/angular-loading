@@ -1,6 +1,6 @@
 {
   "name": "angular-loading",
-  "version": "0.8.4",
+  "version": "0.9.0",
   "description": "Create an angular service which can show various forms of \"loading\" animations.",
   "main": "index.js",
   "scripts": {
