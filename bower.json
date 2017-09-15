@@ -1,5 +1,5 @@
 {
-  "name": "angular-loading",
+  "name": "angular-loading-lbthomsen",
   "description": "Create an angular service which can show various forms of \"loading\" animations.",
   "main": "angular-loading.js",
   "authors": [
@@ -7,7 +7,7 @@
   ],
   "license": "MIT",
   "keywords": [
-    "angular"
+    "angularjs"
   ],
   "homepage": "https://lth.bright-things.com/angular-loading",
   "ignore": [
@@ -18,7 +18,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "^1.6.5",
+    "angular": "^1.6.6",
     "font-awesome": "^4.7.0"
   }
 }
