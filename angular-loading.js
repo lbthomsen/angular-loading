@@ -34,8 +34,8 @@
                 that.frameBorderRadius = frameBorderRadius;
             };
 
-            that.$get = ["$log",
-                function ($log) {
+            that.$get = ["$log", "$rootScope", 
+                function ($log, $rootScope) {
                     $log.debug("LoadingService: starting");
 
                     var me = {
@@ -48,6 +48,14 @@
                             me.isLoading = loading;
                         }
                     };
+                    
+                    $rootScope.$on("setLoading", function() {
+                        me.isLoading = true;
+                    });
+                    
+                    $rootScope.$on("resetLoading", function() {
+                        me.isLoading = false;
+                    });
 
                     return me;
 
@@ -57,7 +65,7 @@
         }
     ]);
 
-    module.directive("loading", ["$log",
+    module.directive("loading", ["$log", 
         function ($log) {
             return {
                 restrict: 'E',

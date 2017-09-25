@@ -15,7 +15,7 @@
         Click this button to display loading for <input type="number" ng-model="bodyCtrl.timer"/> second: <button ng-click="bodyCtrl.showLoading()">Test</button>
     </p>
     <p>
-        Is loading: {{bodyCtrl.loadingService.isLoading}}
+        The source is available on <a href="https://github.com/lbthomsen/angular-loading">Github</a>
     </p>
 
     <script type="text/javascript" src="node_modules/angular/angular.js"></script>
@@ -31,23 +31,22 @@
 
                             loadingServiceProvider.setOverlayOpacity(0.1);
                             loadingServiceProvider.setFrameOpacity(0.8);
-                            loadingServiceProvider.setIcon("fa-spinner");
-                            //loadingServiceProvider.setIcon("fa-circle-o-notch");
+                            //loadingServiceProvider.setIcon("fa-spinner");
+                            loadingServiceProvider.setIcon("fa-circle-o-notch");
 
                         }
                     ]);
 
-                    app.controller("BodyController", ["$timeout", "LoadingService",
-                        function ($timeout, loadingService) {
+                    app.controller("BodyController", ["$timeout", "$scope",
+                        function ($timeout, $scope) { 
 
                             var that = this;
-                            that.loadingService = loadingService;
                             that.timer = 1;
 
                             that.showLoading = function () {
-                                loadingService.setLoading(true);
+                                $scope.$emit("setLoading");
                                 $timeout(function () {
-                                    loadingService.setLoading(false);
+                                    $scope.$emit("resetLoading");
                                 }, that.timer * 1000);
                             };
 
