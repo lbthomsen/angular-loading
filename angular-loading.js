@@ -1,7 +1,7 @@
 /*
  * Angular Loading Module
  * 
- * Copyright 2017 by Lars Boegild Thomsen <lbthomsen@gmail.com>
+ * Copyright 2017-2019 by Lars Boegild Thomsen <lbthomsen@gmail.com>
  * 
  */
 (function () {
@@ -13,7 +13,7 @@
 
             var that = this;
 
-            that.icon = "fa-spinner";
+            that.icon = "fa-circle-notch";
             that.overlayOpacity = 0.3;
             that.frameOpacity = 0.9;
             that.frameBorderRadius = "10px";
